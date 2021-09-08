@@ -1,6 +1,6 @@
-import { createTheme } from "@material-ui/core";
+import { createTheme, responsiveFontSizes } from "@material-ui/core";
 
 // implement custom theming here
-const theme = createTheme({});
+const theme = responsiveFontSizes(createTheme({}));
 
 export default theme;
