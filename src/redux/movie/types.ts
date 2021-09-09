@@ -1,9 +1,3 @@
-import {
-  MOVIE_FETCH_FAILED,
-  MOVIE_FETCH_REQUESTED,
-  MOVIE_FETCH_SUCCESSFUL,
-} from "./actions";
-
 export interface Rating {
   Source: string;
   Value: string;
@@ -34,27 +28,70 @@ export interface Movie {
   BoxOffice: string;
   Production: string;
   Website: string;
-  Response: string;
 }
 
-export interface MovieFetchRequestedAction {
-  type: typeof MOVIE_FETCH_REQUESTED;
-}
-export interface MovieFetchSuccessfulAction {
-  type: typeof MOVIE_FETCH_SUCCESSFUL;
-  payload: {
-    movies: Movie[];
-  };
-}
-export interface MovieFetchFailedAction {
-  type: typeof MOVIE_FETCH_FAILED;
+export class MovieMeta {
+  Genre: string;
+  Type: string;
+  Year: string;
+  Language: string;
+  Released: string;
+  Country: string;
+  Director: string;
+  Actors: string;
+  Writer: string;
+  Production: string;
+  Runtime: string;
+  DVD: string;
+  BoxOffice: string;
+  Awards: string;
+  Rated: string;
+  Metascore: string;
+  Website: string;
+
+  constructor(movie: Movie) {
+    this.Genre = movie.Genre;
+    this.Type = movie.Type;
+    this.Year = movie.Year;
+    this.Released = movie.Released;
+    this.Rated = movie.Rated;
+    this.Runtime = movie.Runtime;
+    this.Writer = movie.Writer;
+    this.Actors = movie.Actors;
+    this.DVD = movie.DVD;
+    this.Director = movie.Director;
+    this.BoxOffice = movie.BoxOffice;
+    this.Production = movie.Production;
+    this.Website = movie.Website;
+    this.Metascore = movie.Metascore;
+    this.Language = movie.Language;
+    this.Awards = movie.Awards;
+    this.Country = movie.Country;
+  }
 }
 
-export type MovieAction =
-  | MovieFetchRequestedAction
-  | MovieFetchSuccessfulAction
-  | MovieFetchFailedAction;
-
-export interface MovieState {
-  movies: Movie[];
+export interface MoviePreview {
+  Title: string;
+  Year: string;
+  imdbID: string;
+  Type: string;
+  Poster: string;
+  Language: string;
+  Country: string;
+  Awards: string;
 }
+
+export type MovieCache = {
+  [query: string]: MovieCacheObj;
+};
+
+export type FavoriteMovies = {
+  [key: string]: Movie;
+};
+
+export type MovieCacheObj = {
+  page: number;
+  movies: MoviePreview[];
+  isError: boolean;
+  isLoading: boolean;
+};

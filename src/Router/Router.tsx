@@ -11,7 +11,7 @@ const Router = () => {
         <Route path="/favorite" exact>
           <FavoritePage />
         </Route>
-        <Route path="/detail" exact>
+        <Route path="/details/:movieId" exact>
           <DetailsPage />
         </Route>
         <Route path="/" exact>
