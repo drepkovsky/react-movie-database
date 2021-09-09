@@ -1,5 +1,4 @@
 import {
-  Box,
   CircularProgress,
   IconButton,
   InputBase,
@@ -11,10 +10,11 @@ import React, { useState } from "react";
 interface SearchBarProps {
   onSearch: (search: string) => void;
   isLoading?: boolean;
+  initialSearch: string;
 }
 
-const SearchBar = ({ onSearch, isLoading }: SearchBarProps) => {
-  const [search, setSearch] = useState("");
+const SearchBar = ({ onSearch, isLoading, initialSearch }: SearchBarProps) => {
+  const [search, setSearch] = useState(initialSearch);
 
   //styles
   const classes = useStyles();

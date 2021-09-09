@@ -6,17 +6,23 @@ const NavbarLayout: React.FunctionComponent = ({ children }) => {
   // styles
   const classes = useStyles();
   return (
-    <>
+    <div className={classes.app}>
       <Navbar />
-      <main className={classes.content}>{children}</main>
-    </>
+      <div className={classes.content}>{children}</div>
+    </div>
   );
 };
 
 const useStyles = makeStyles((theme) => ({
   content: {
-    marginTop: theme.mixins.toolbar.minHeight,
-    paddingBlock: theme.spacing(2, 4),
+    paddingTop: `calc(${theme.mixins.toolbar.minHeight}px  + ${theme.spacing(
+      2
+    )}px)`,
+    paddingBottom: theme.spacing(4),
+  },
+  app: {
+    minHeight: "100vh",
+    backgroundColor: theme.palette.background.default,
   },
 }));
 

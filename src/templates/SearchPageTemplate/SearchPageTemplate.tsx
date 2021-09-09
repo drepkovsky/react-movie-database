@@ -1,4 +1,10 @@
-import { Container, Grid, makeStyles, Typography } from "@material-ui/core";
+import {
+  alpha,
+  Container,
+  Grid,
+  makeStyles,
+  Typography,
+} from "@material-ui/core";
 import React from "react";
 import ListContainer from "../../components/ListContainer/ListContainer";
 import MovieCard, {
@@ -12,6 +18,7 @@ import { MoviePreview } from "../../redux/movie/types";
 export interface SearchPageTemplateProps {
   isLoading: boolean;
   isError: boolean;
+  currentSearch: string;
   onSearch: (search: string) => void;
   movies: MoviePreview[];
   onNextPage: () => void;
@@ -27,6 +34,7 @@ const SearchPageTemplate = ({
   onNextPage,
   onMovieClick,
   isFavoriteCheck,
+  currentSearch,
 }: SearchPageTemplateProps) => {
   //ref
   const wrapperRef = React.useRef<HTMLElement>(null);
@@ -42,7 +50,7 @@ const SearchPageTemplate = ({
         <Grid spacing={2} container>
           <Grid item xs={12}>
             <Typography
-              variant="h2"
+              variant="h1"
               color="primary"
               align="center"
               className={classes.title}
@@ -50,16 +58,21 @@ const SearchPageTemplate = ({
               Movie Database
             </Typography>
             <Typography
-              variant="h5"
+              variant="subtitle1"
               color="textSecondary"
               align="center"
               className={classes.subtitle}
+              gutterBottom
             >
               Find information about every movie
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <SearchBar onSearch={onSearch} isLoading={isLoading} />
+            <SearchBar
+              onSearch={onSearch}
+              isLoading={isLoading}
+              initialSearch={currentSearch}
+            />
           </Grid>
           <Grid item xs={12}>
             <Grid innerRef={wrapperRef} container spacing={2}>
@@ -111,12 +124,11 @@ const SearchPageTemplate = ({
 };
 
 const useStyles = makeStyles((theme) => ({
-  title: {
-    fontWeight: "bold",
-    letterSpacing: 0.5,
-  },
   subtitle: {
     fontStyle: "italic",
+  },
+  title: {
+    textShadow: `0 0 20px ${alpha(theme.palette.primary.dark, 0.5)}`,
   },
 }));
 

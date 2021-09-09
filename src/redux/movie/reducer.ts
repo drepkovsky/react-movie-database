@@ -21,6 +21,7 @@ export interface MovieState {
     isLoading: boolean;
   };
   favoriteMovies: FavoriteMovies;
+  currentSearch: string;
 }
 const initialState: MovieState = {
   movieCache: {},
@@ -29,6 +30,7 @@ const initialState: MovieState = {
     isLoading: false,
   },
   favoriteMovies: loadFavoriteMovies(),
+  currentSearch: "",
 };
 
 const movieReducer: Reducer<MovieState, MovieAction> = (
@@ -74,6 +76,7 @@ const movieReducer: Reducer<MovieState, MovieAction> = (
       return {
         ...state,
         movieCache: { ...state.movieCache, [action.payload.search]: obj },
+        currentSearch: action.payload.search,
       };
     }
     case MOVIE_FETCH_REQUESTED: {
