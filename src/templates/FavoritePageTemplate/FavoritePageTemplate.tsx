@@ -44,7 +44,7 @@ const FavoritePageTemplate: React.FunctionComponent<FavoritePageTemplateProps> =
                   }
                   renderItem={(item, index) => {
                     return (
-                      <Grid item xs={6} md={4} key={index}>
+                      <Grid item xs={6} sm={4} key={index}>
                         <MovieCard
                           movie={item}
                           onClick={onMovieClick}

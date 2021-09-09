@@ -83,7 +83,7 @@ const NavLink: React.FunctionComponent<NavLinkProps> = ({
   const history = useHistory();
 
   const onClick = () => {
-    history.replace(link);
+    history.push(link);
   };
 
   return (

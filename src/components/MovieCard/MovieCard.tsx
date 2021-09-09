@@ -91,6 +91,9 @@ const useStyles = makeStyles((theme) => ({
       boxShadow: theme.shadows[10],
       zIndex: 20,
     },
+    [theme.breakpoints.down("sm")]: {
+      height: 300,
+    },
   },
   cardContent: {
     position: "absolute",

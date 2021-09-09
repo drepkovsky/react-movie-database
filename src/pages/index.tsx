@@ -43,7 +43,7 @@ const SearchPage = () => {
 
   const onMovieClick = React.useCallback(
     (id: string) => {
-      history.replace(`/details/${id}`);
+      history.push(`/details/${id}`);
     },
     [history]
   );

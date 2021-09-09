@@ -98,7 +98,7 @@ const SearchPageTemplate = ({
                 }
                 renderItem={(item, index) => {
                   return (
-                    <Grid item xs={6} md={4} key={index}>
+                    <Grid item xs={6} sm={4} key={index}>
                       <MovieCard
                         movie={item}
                         onClick={onMovieClick}
@@ -109,7 +109,7 @@ const SearchPageTemplate = ({
                 }}
                 suspense={[...Array(9)].map((i) => {
                   return (
-                    <Grid item xs={6} md={4} key={i}>
+                    <Grid item xs={6} sm={4} key={i}>
                       <MovieCardSkeleton />
                     </Grid>
                   );
