@@ -25,6 +25,7 @@ const MovieDetails = ({
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} className={classes.titleWrapper}>
+        {/* title */}
         <Typography variant="h4" color="textPrimary">
           <Box mr={1} component="span">
             {movie.Title}
@@ -37,15 +38,17 @@ const MovieDetails = ({
         {isFavorite ? <FavoriteChip /> : null}
       </Grid>
 
+      {/* poster and info */}
       <Grid item xs={12} sm={6} md={5}>
         <Poster poster={movie.Poster} alt={movie.Title} />
       </Grid>
       <Grid item xs={12} sm={6} md={7}>
-        <Typography variant="h5" color="textPrimary" gutterBottom>
-          Details
-        </Typography>
-        <MovieInfo movieMeta={new MovieMeta(movie)} />
+        <Grid item xs={12}>
+          <MovieInfo movieMeta={new MovieMeta(movie)} />
+        </Grid>
       </Grid>
+
+      {/* plot */}
       <Grid item xs={12}>
         <Typography variant="h5" color="textPrimary" gutterBottom>
           Plot
@@ -54,6 +57,8 @@ const MovieDetails = ({
           {movie.Plot}
         </Typography>
       </Grid>
+
+      {/* rating */}
       {movie.Ratings.length > 0 ? (
         <Grid item xs={12} container spacing={2}>
           <Grid item xs={12}>

@@ -1,7 +1,7 @@
-import { Button, makeStyles } from "@material-ui/core";
+import { alpha, IconButton, makeStyles } from "@material-ui/core";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
-import React, { useEffect, useState } from "react";
 import clsx from "clsx";
+import React, { useEffect, useState } from "react";
 
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -36,17 +36,17 @@ const ScrollToTop = () => {
   };
 
   return (
-    <Button
+    <IconButton
       className={clsx(classes.wrapper, {
         [classes.hidden]: !isVisible,
         [classes.shown]: isVisible,
       })}
       disabled={!isVisible}
+      color="secondary"
       onClick={onClick}
-      variant="contained"
     >
       <ArrowUpwardIcon />
-    </Button>
+    </IconButton>
   );
 };
 
@@ -56,8 +56,11 @@ const useStyles = makeStyles((theme) => ({
     bottom: theme.spacing(4),
     right: theme.spacing(2),
     transition: "all 0.2s ease-in-out",
-    height: "50px",
-    width: "50px",
+    zIndex: 100,
+    background: theme.palette.background.paper,
+    "&:hover": {
+      background: alpha(theme.palette.secondary.main, 0.5),
+    },
   },
   hidden: {
     opacity: 0,

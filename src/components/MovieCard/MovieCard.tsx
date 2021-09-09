@@ -100,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
     left: 0,
     backgroundColor: "rgb(0,0,0,0)",
     background:
-      " linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8046568969384629) 35%, rgba(0,0,0,0) 100%)",
+      " linear-gradient(0deg, #000000 0%, #000000cd 35%, rgba(0,0,0,0) 100%)",
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-end",
