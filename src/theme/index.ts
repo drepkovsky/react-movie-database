@@ -79,10 +79,10 @@ const theme = responsiveFontSizes(
         lineHeight: 1.5,
       },
       body1: {
-        fontWeight: 500,
+        fontWeight: 400,
       },
       body2: {
-        fontWeight: 400,
+        fontWeight: 500,
         lineHeight: 1.57,
         letterSpacing: 0.9,
       },
