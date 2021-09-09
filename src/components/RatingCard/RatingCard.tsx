@@ -1,15 +1,22 @@
-import { Card, CardContent, Grid, Typography } from "@material-ui/core";
+import {
+  Card,
+  CardContent,
+  Grid,
+  makeStyles,
+  Typography,
+} from "@material-ui/core";
+import { Skeleton } from "@material-ui/lab";
 import React from "react";
 import { Rating as RatingType } from "../../redux/movie/types";
-import { Skeleton } from "@material-ui/lab";
 
 interface RatingProps {
   rating: RatingType;
 }
 
-const Rating = ({ rating }: RatingProps) => {
+const RatingCard = ({ rating }: RatingProps) => {
+  const classes = useStyles();
   return (
-    <Card>
+    <Card className={classes.card}>
       <CardContent>
         <Grid container spacing={2}>
           <Grid item xs={12}>
@@ -28,9 +35,10 @@ const Rating = ({ rating }: RatingProps) => {
   );
 };
 
-export const RatingSkeleton = () => {
+export const RatingCardSkeleton = () => {
+  const classes = useStyles();
   return (
-    <Card>
+    <Card className={classes.card}>
       <CardContent>
         <Grid container spacing={2}>
           <Grid item xs={12}>
@@ -45,4 +53,10 @@ export const RatingSkeleton = () => {
   );
 };
 
-export default Rating;
+const useStyles = makeStyles((theme) => ({
+  card: {
+    height: "100%",
+  },
+}));
+
+export default RatingCard;

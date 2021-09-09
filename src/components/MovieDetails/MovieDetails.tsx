@@ -6,7 +6,7 @@ import FavoriteChip from "../FavoriteChip/FavoriteChip";
 import FavoriteStar from "../FavoriteStar/FavoriteStar";
 import MovieInfo from "../MovieInfo/MovieInfo";
 import Poster from "../Poster/Poster";
-import Rating, { RatingSkeleton } from "../Rating/Rating";
+import RatingCard, { RatingCardSkeleton } from "../RatingCard/RatingCard";
 
 interface MovieDetailsProps {
   movie: Movie;
@@ -68,7 +68,7 @@ const MovieDetails = ({
           </Grid>
           {movie.Ratings.map((rating, index) => (
             <Grid item xs={6} md={4}>
-              <Rating rating={rating} key={index} />
+              <RatingCard rating={rating} key={index} />
             </Grid>
           ))}
         </Grid>
@@ -102,10 +102,10 @@ export const MovieDetailsSkeleton = () => {
           <Skeleton variant="text" height="24px" />
         </Grid>
         <Grid item xs={6} md={4}>
-          <RatingSkeleton />
+          <RatingCardSkeleton />
         </Grid>
         <Grid item xs={6} md={4}>
-          <RatingSkeleton />
+          <RatingCardSkeleton />
         </Grid>
       </Grid>
     </Grid>

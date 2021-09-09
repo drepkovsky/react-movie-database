@@ -16,8 +16,9 @@ const SearchPage = () => {
   // route
   const history = useHistory();
 
-  // hooks
   const dispatch = useAppDispatch();
+
+  // selectors
   const favoriteMovies = useAppSelector((state) => state.movie.favoriteMovies);
   const currentSearch = useAppSelector((state) => state.movie.currentSearch);
   const movieCacheObj = useAppSelector(
