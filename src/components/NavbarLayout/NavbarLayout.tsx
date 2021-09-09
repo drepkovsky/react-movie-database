@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: `calc(${theme.mixins.toolbar.minHeight}px  + ${theme.spacing(
       2
     )}px)`,
-    paddingBottom: theme.spacing(4),
+    paddingBottom: theme.spacing(8),
   },
   app: {
     minHeight: "100vh",
