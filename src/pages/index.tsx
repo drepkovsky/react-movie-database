@@ -8,8 +8,11 @@ import SearchPageTemplate from "../templates/SearchPageTemplate/SearchPageTempla
  *
  * SearchPage - home page of our site
  *
- * Search movies through search input,
- * show list of movies
+ * Search page provides a basic functionality for searching movies through search input.
+ * Search results are showed in a list container with support of endless scrolling in our search page template.
+ * Search results are stored and cached by search in redux store.
+ * When search is started, movies are tried to being pulled out of the cache instantly.
+ * Cache is not persistent and has no restrictions yet.
  *
  */
 const SearchPage = () => {

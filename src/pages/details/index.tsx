@@ -8,6 +8,16 @@ import {
 } from "../../redux/movie/actions";
 import DetailsPageTemplate from "../../templates/DetailsPageTemplate/DetailsPageTemplate";
 
+/**
+ *
+ * Display Page
+ *
+ * receives movieId through params, then it uses it to fetch movie from.
+ * If there is no movie with such id, 404 is displayed.
+ * If movie was found and fetched successfully it is stored to redux store and all it's details
+ * are displayed through Movie details template
+ *
+ */
 const DetailsPage = () => {
   // params
   const { movieId } = useParams<{ movieId: string }>();

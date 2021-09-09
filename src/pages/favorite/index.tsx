@@ -3,6 +3,13 @@ import { useHistory } from "react-router";
 import { useAppSelector } from "../../redux/hooks";
 import FavoritePageTemplate from "../../templates/FavoritePageTemplate/FavoritePageTemplate";
 
+/**
+ * Favorite page
+ *
+ * Displays all of our favorite movies.
+ * Favorite movies are loaded from redux store and sent to favorite movies page template for display.
+ *
+ */
 const FavoritePage = () => {
   // router
   const history = useHistory();
