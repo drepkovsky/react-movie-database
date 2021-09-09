@@ -107,9 +107,9 @@ const SearchPageTemplate = ({
                     </Grid>
                   );
                 }}
-                suspense={[...Array(9)].map((i) => {
+                suspense={[...Array(9)].map((i, index) => {
                   return (
-                    <Grid item xs={6} sm={4} key={i}>
+                    <Grid item xs={6} sm={4} key={index}>
                       <MovieCardSkeleton />
                     </Grid>
                   );

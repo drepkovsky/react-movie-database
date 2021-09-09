@@ -67,7 +67,7 @@ const MovieDetails = ({
             </Typography>
           </Grid>
           {movie.Ratings.map((rating, index) => (
-            <Grid item xs={6} md={4}>
+            <Grid item xs={6} md={4} key={index}>
               <RatingCard rating={rating} key={index} />
             </Grid>
           ))}

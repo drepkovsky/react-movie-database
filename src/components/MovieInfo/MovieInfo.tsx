@@ -1,6 +1,6 @@
 import { Grid, makeStyles, Typography } from "@material-ui/core";
 import clsx from "clsx";
-import React from "react";
+import React, { Fragment } from "react";
 import { MovieMeta } from "../../redux/movie/types";
 interface MovieMetaProps {
   movieMeta: MovieMeta;
@@ -17,7 +17,7 @@ const MovieInfo = ({ movieMeta }: MovieMetaProps) => {
         </Typography>
       </Grid>
       {Object.entries(movieMeta).map(([key, value], index) => (
-        <>
+        <Fragment key={index}>
           <Grid
             item
             xs={5}
@@ -40,7 +40,7 @@ const MovieInfo = ({ movieMeta }: MovieMetaProps) => {
               {value}
             </Typography>
           </Grid>
-        </>
+        </Fragment>
       ))}
     </Grid>
   );
