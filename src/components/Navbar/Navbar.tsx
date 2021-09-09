@@ -17,15 +17,14 @@ const links: { link: string; text: string }[] = [
 
 const Navbar = () => {
   // routing
-  const { url, path } = useRouteMatch();
-  console.log(url, path);
+  const { url } = useRouteMatch();
 
   // styles
   const classes = useStyles();
 
   return (
     <AppBar className={classes.appBar}>
-      <Container maxWidth="lg">
+      <Container maxWidth="md">
         <Box className={classes.toolbar}>
           <Box className={classes.brand}>
             <Typography variant="h6" color="textPrimary">
