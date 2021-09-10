@@ -15,11 +15,11 @@ Therefore pages are separated by directories in the pages folder. Thanks to this
 
 For project simplicity any design system patterns like atomic or module design are not used.
 
-1.All reusable components are stored in components folder and are used as a main building blocks of this project.
+1.All reusable components are stored in *components* folder and are used as main building blocks of this project.
 
-2.All pages serves route and data-layer purpose. (data is being selected from store, and actions dispatched only on this level). And are stored in pages folder.
+2.Every page serves route and data-layer purpose. (data is being selected from store, and actions dispatched only on this level) and is stored in *pages* folder.
 
-3.Templates are components that receives data from pages and orchestrate them between components. Template holds the whole page together and represents its shape. Event callbacks are passed from templates back to the page layer where they are accordingly handled.
+3.Templates receive data from pages and orchestrate them between components. Template holds the whole page together and represents its shape. Event callbacks are passed from templates back to the page layer where they are accordingly handled. Templates are stored in *templates* folder.
 
 
 ## HOW TO RUN
