@@ -123,9 +123,9 @@ const useStyles = makeStyles((theme) => ({
   NA: {
     display: "flex",
     alignItems: "center",
-    backgroundColor: theme.palette.grey[300],
+    backgroundColor: theme.palette.background.paper,
     justifyContent: "center",
-    color: theme.palette.grey[600],
+    color: theme.palette.text.disabled,
   },
 }));
 

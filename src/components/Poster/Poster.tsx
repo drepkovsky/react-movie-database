@@ -15,7 +15,9 @@ function Poster({ poster, alt }: PosterProps): ReactElement {
       {isImage ? (
         <img src={poster} alt={alt} className={classes.img} />
       ) : (
-        <Typography variant="h5" color="inherit"></Typography>
+        <Typography variant="h5" color="inherit">
+          N/A
+        </Typography>
       )}
     </Card>
   );
@@ -31,8 +33,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: theme.palette.grey[300],
-    color: theme.palette.grey[600],
+    backgroundColor: theme.palette.background.paper,
+    color: theme.palette.text.disabled,
     minHeight: "200px",
     height: "100%",
   },
