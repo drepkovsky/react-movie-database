@@ -13,7 +13,7 @@ Search results are stored in **redux** and also **cached** by their search query
 Although **react-router-dom** is used as an routing option for this project, project structure was build with **MULTIPLE FRAMEWORK COMPATIBILTY IN MIND**.
 Therefore pages are separated by directories in the pages folder. Thanks to this approach moving the project to framework like Next or Gatsby should be easier.
 
-For project far simplicity any design system patterns like atomic or module design are not used.
+For project simplicity any design system patterns like atomic or module design are not used.
 
 1.All reusable components are stored in components folder and are used as a main building blocks of this project.
 
