@@ -38,6 +38,7 @@ function ListContainer<T>({
         } else setWasBottomCalled(false);
       }
     };
+    onScroll();
     window.addEventListener("scroll", onScroll, false);
     return () => window.removeEventListener("scroll", onScroll, false);
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -8,7 +8,7 @@ import MovieInfo from "../MovieInfo/MovieInfo";
 import Poster from "../Poster/Poster";
 import Rating, { RatingSkeleton } from "../Rating/Rating";
 
-interface MovieDetailsProps {
+export interface MovieDetailsProps {
   movie: Movie;
   onFavoriteClick: (movie: Movie) => void;
   isFavorite: boolean;
@@ -27,15 +27,16 @@ const MovieDetails = ({
       <Grid item xs={12} className={classes.titleWrapper}>
         {/* title */}
         <Typography variant="h4" color="textPrimary">
-          <Box mr={1} component="span">
+          <Box mr={1} component="span" data-testid="title">
             {movie.Title}
           </Box>
           <FavoriteStar
             onClick={() => onFavoriteClick(movie)}
             isFavorite={isFavorite}
+            data-testid="favorite-star"
           />
         </Typography>
-        {isFavorite ? <FavoriteChip /> : null}
+        {isFavorite ? <FavoriteChip data-testId="favorite-chip" /> : null}
       </Grid>
 
       {/* poster and info */}
@@ -53,7 +54,7 @@ const MovieDetails = ({
         <Typography variant="h5" color="textPrimary" gutterBottom>
           Plot
         </Typography>
-        <Typography variant="body1" color="textPrimary">
+        <Typography variant="body1" color="textPrimary" data-testid="plot">
           {movie.Plot}
         </Typography>
       </Grid>
@@ -67,8 +68,8 @@ const MovieDetails = ({
             </Typography>
           </Grid>
           {movie.Ratings.map((rating, index) => (
-            <Grid item xs={6} md={4}>
-              <Rating rating={rating} key={index} />
+            <Grid item xs={6} md={4} key={index} data-testid="rating">
+              <Rating rating={rating} />
             </Grid>
           ))}
         </Grid>

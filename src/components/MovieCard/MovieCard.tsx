@@ -29,7 +29,11 @@ const MovieCard = ({ movie, onClick, isFavorite }: MovieCardProps) => {
   };
 
   return (
-    <Card className={classes.card} onClick={handleClick}>
+    <Card
+      className={classes.card}
+      onClick={handleClick}
+      data-testid="movie-card"
+    >
       {isImage ? (
         <CardMedia
           className={classes.img}
@@ -38,13 +42,18 @@ const MovieCard = ({ movie, onClick, isFavorite }: MovieCardProps) => {
         />
       ) : (
         <Box className={clsx(classes.img, classes.NA)}>
-          <Typography color="inherit" variant="h3">
+          <Typography color="inherit" variant="h3" data-testid="na-img-text">
             N/A
           </Typography>
         </Box>
       )}
       <Box className={classes.cardContent}>
-        <Typography variant="h6" color="inherit" gutterBottom>
+        <Typography
+          variant="h6"
+          color="inherit"
+          gutterBottom
+          data-testid="title"
+        >
           {movie.Title}
         </Typography>
         <Box
@@ -53,10 +62,14 @@ const MovieCard = ({ movie, onClick, isFavorite }: MovieCardProps) => {
           alignItems="flex-end"
         >
           <Box>
-            <Typography variant="body2" color="inherit">
-              {`${movie.Type}, ${movie.Year}`}
+            <Typography variant="body2" color="inherit" data-testid="type-year">
+              {`${movie.Type} ${movie.Year}`}
             </Typography>
-            <Typography variant="body2" color="inherit">
+            <Typography
+              variant="body2"
+              color="inherit"
+              data-testid="country-language"
+            >
               {`${movie.Country || ""} ${movie.Language || ""}`}
             </Typography>
           </Box>
