@@ -1,17 +1,16 @@
 import { Reducer } from "redux";
 import {
   MovieAction,
-  MOVIE_ADD_TO_FAVORITE,
   MOVIE_CACHE_HIT,
   MOVIE_FETCH_FAILED,
   MOVIE_FETCH_REQUESTED,
   MOVIE_FETCH_SUCCESSFUL,
-  MOVIE_REMOVE_FROM_FAVORITE,
   MOVIE_SEARCH_FAILED,
   MOVIE_SEARCH_REQUESTED,
   MOVIE_SEARCH_SUCCESSFUL,
+  MOVIE_SET_FAVORITES,
 } from "./actions";
-import { getCacheObj, loadFavoriteMovies, saveFavoriteMovies } from "./helpers";
+import { getCacheObj, loadFavoriteMovies } from "./helpers";
 import { FavoriteMovies, Movie, MovieCache } from "./types";
 
 export interface MovieState {
@@ -106,33 +105,12 @@ const movieReducer: Reducer<MovieState, MovieAction> = (
         },
       };
     }
-    case MOVIE_ADD_TO_FAVORITE: {
-      const favoriteMovies = {
-        ...state.favoriteMovies,
+
+    case MOVIE_SET_FAVORITES: {
+      return {
+        ...state,
+        favoriteMovies: action.payload.favoriteMovies,
       };
-
-      if (!favoriteMovies[action.payload.id]) {
-        favoriteMovies[action.payload.id] = action.payload.movie;
-        saveFavoriteMovies(favoriteMovies);
-        return {
-          ...state,
-          favoriteMovies,
-        };
-      }
-      return state;
-    }
-    case MOVIE_REMOVE_FROM_FAVORITE: {
-      const favoriteMovies = { ...state.favoriteMovies };
-
-      if (favoriteMovies[action.payload.id]) {
-        delete favoriteMovies[action.payload.id];
-        saveFavoriteMovies(favoriteMovies);
-        return {
-          ...state,
-          favoriteMovies,
-        };
-      }
-      return state;
     }
 
     default:

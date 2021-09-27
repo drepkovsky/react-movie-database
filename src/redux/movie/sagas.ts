@@ -5,34 +5,38 @@ import {
   MoviesFindByIdData,
   MoviesFindData,
 } from "../../api/movies";
-import { RootState } from "../store";
 import {
+  MovieAddToFavoriteAction,
   movieCacheHitAction,
   movieFetchFailedAction,
   MovieFetchRequestedAction,
   movieFetchSuccessfulAction,
+  MovieRemoveFromFavoriteAction,
   movieSearchFailedAction,
   MovieSearchRequestedAction,
   movieSearchSuccessfulAction,
+  movieSetFavoritesAction,
+  MOVIE_ADD_TO_FAVORITE,
   MOVIE_FETCH_REQUESTED,
+  MOVIE_REMOVE_FROM_FAVORITE,
   MOVIE_SEARCH_REQUESTED,
 } from "./actions";
-import { emptyMovieCacheObject } from "./helpers";
-import { MovieCache } from "./types";
+import { emptyMovieCacheObject, saveFavoriteMovies } from "./helpers";
+import { getFavoriteMoviesMap, getMovieCache } from "./selectors";
+import { FavoriteMovies, MovieCache } from "./types";
 
 // saga
 export default function* movieSaga(): Generator<StrictEffect> {
   yield takeEvery(MOVIE_SEARCH_REQUESTED, searchMovies);
   yield takeEvery(MOVIE_FETCH_REQUESTED, fetchMovie);
+  yield takeEvery(MOVIE_ADD_TO_FAVORITE, addMovieToFavorites);
+  yield takeEvery(MOVIE_REMOVE_FROM_FAVORITE, removeMovieFromFavorites);
 }
-
-// selectors
-const selectCache = (state: RootState) => state.movie.movieCache;
 
 // workers
 function* searchMovies(action: MovieSearchRequestedAction) {
   try {
-    const cache: MovieCache = yield select(selectCache);
+    const cache: MovieCache = yield select(getMovieCache);
 
     let cacheObj = cache[action.payload.search] || emptyMovieCacheObject;
 
@@ -77,5 +81,25 @@ function* fetchMovie(action: MovieFetchRequestedAction) {
     if (err instanceof MovieError) {
       yield put(movieFetchFailedAction());
     }
+  }
+}
+
+function* addMovieToFavorites(action: MovieAddToFavoriteAction) {
+  const favoriteMovies: FavoriteMovies = yield select(getFavoriteMoviesMap);
+
+  if (!favoriteMovies[action.payload.id]) {
+    favoriteMovies[action.payload.id] = action.payload.movie;
+    saveFavoriteMovies(favoriteMovies);
+    yield put(movieSetFavoritesAction(favoriteMovies));
+  }
+}
+
+function* removeMovieFromFavorites(action: MovieRemoveFromFavoriteAction) {
+  const favoriteMovies: FavoriteMovies = yield select(getFavoriteMoviesMap);
+
+  if (favoriteMovies[action.payload.id]) {
+    delete favoriteMovies[action.payload.id];
+    saveFavoriteMovies(favoriteMovies);
+    yield put(movieSetFavoritesAction(favoriteMovies));
   }
 }

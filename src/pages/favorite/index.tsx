@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router";
 import { useAppSelector } from "../../redux/hooks";
+import { getFavoriteMoviesArray } from "../../redux/movie/selectors";
 import FavoritePageTemplate from "../../templates/FavoritePageTemplate/FavoritePageTemplate";
 
 /**
@@ -15,10 +16,7 @@ const FavoritePage = () => {
   const history = useHistory();
 
   // favorite movies map
-  const favoriteMovies = useAppSelector((state) => state.movie.favoriteMovies);
-  const movies = React.useMemo(() => {
-    return Object.values(favoriteMovies);
-  }, [favoriteMovies]);
+  const favoriteMovies = useAppSelector(getFavoriteMoviesArray);
 
   // callbacks
   const onMovieClick = React.useCallback(
@@ -28,7 +26,9 @@ const FavoritePage = () => {
     [history]
   );
 
-  return <FavoritePageTemplate movies={movies} onMovieClick={onMovieClick} />;
+  return (
+    <FavoritePageTemplate movies={favoriteMovies} onMovieClick={onMovieClick} />
+  );
 };
 
 export default FavoritePage;

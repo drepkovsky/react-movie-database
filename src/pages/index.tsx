@@ -2,6 +2,11 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { movieSearchRequestedAction } from "../redux/movie/actions";
+import {
+  getCurrentSearch,
+  getFavoriteMoviesMap,
+  getMovieCacheObj,
+} from "../redux/movie/selectors";
 import SearchPageTemplate from "../templates/SearchPageTemplate/SearchPageTemplate";
 
 /**
@@ -22,15 +27,9 @@ const SearchPage = () => {
   const dispatch = useAppDispatch();
 
   // selectors
-  const favoriteMovies = useAppSelector((state) => state.movie.favoriteMovies);
-  const currentSearch = useAppSelector((state) => state.movie.currentSearch);
-  const movieCacheObj = useAppSelector(
-    (state) => state.movie.movieCache[currentSearch]
-  );
-  const { movies, isLoading, isError } = React.useMemo(
-    () => movieCacheObj || { movies: [], isError: false, isLoading: false },
-    [movieCacheObj]
-  );
+  const favoriteMovies = useAppSelector(getFavoriteMoviesMap);
+  const currentSearch = useAppSelector(getCurrentSearch);
+  const movieCacheObj = useAppSelector(getMovieCacheObj(currentSearch));
 
   // callbacks
   const onSearchChange = React.useCallback(
@@ -59,9 +58,9 @@ const SearchPage = () => {
   return (
     <SearchPageTemplate
       onSearch={onSearchChange}
-      movies={movies}
-      isLoading={isLoading}
-      isError={isError}
+      movies={movieCacheObj.movies}
+      isLoading={movieCacheObj.isLoading}
+      isError={movieCacheObj.isError}
       onNextPage={onNextPage}
       onMovieClick={onMovieClick}
       isFavoriteCheck={isFavoriteCheck}

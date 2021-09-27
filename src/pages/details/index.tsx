@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
-  movieAddToFavorite,
+  movieAddToFavoriteAction,
   movieFetchRequestedAction,
-  movieRemoveFromFavorite,
+  movieRemoveFromFavoriteAction,
 } from "../../redux/movie/actions";
 import DetailsPageTemplate from "../../templates/DetailsPageTemplate/DetailsPageTemplate";
 
@@ -41,9 +41,9 @@ const DetailsPage = () => {
   const onFavoriteClick = React.useCallback(() => {
     if (movie) {
       if (isFavorite) {
-        dispatch(movieRemoveFromFavorite(movieId));
+        dispatch(movieRemoveFromFavoriteAction(movieId));
       } else {
-        dispatch(movieAddToFavorite(movieId, movie));
+        dispatch(movieAddToFavoriteAction(movieId, movie));
       }
     }
   }, [dispatch, isFavorite, movie, movieId]);

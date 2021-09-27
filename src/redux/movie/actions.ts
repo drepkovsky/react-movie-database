@@ -1,4 +1,4 @@
-import { Movie, MoviePreview } from "./types";
+import { FavoriteMovies, Movie, MoviePreview } from "./types";
 
 export const MOVIE_SEARCH_SUCCESSFUL = "MOVIE_SEARCH_SUCCESSFUL";
 export const MOVIE_SEARCH_FAILED = "MOVIE_SEARCH_FAILED";
@@ -7,7 +7,9 @@ export const MOVIE_FETCH_SUCCESSFUL = "MOVIE_FETCH_SUCCESSFUL";
 export const MOVIE_FETCH_FAILED = "MOVIE_FETCH_FAILED";
 export const MOVIE_FETCH_REQUESTED = "MOVIE_FETCH_REQUESTED";
 export const MOVIE_CACHE_HIT = "MOVIE_CACHE_HIT";
+
 export const MOVIE_ADD_TO_FAVORITE = "MOVIE_ADD_TO_FAVORITE";
+export const MOVIE_SET_FAVORITES = "MOVIE_SET_FAVORITES";
 export const MOVIE_REMOVE_FROM_FAVORITE = "MOVIE_REMOVE_FROM_FAVORITE";
 
 export interface MovieSearchRequestedAction {
@@ -53,14 +55,22 @@ export interface MovieCacheHitAction {
     search: string;
   };
 }
-export interface MovieAddToFavorite {
+
+export interface MovieSetFavoritesAction {
+  type: typeof MOVIE_SET_FAVORITES;
+  payload: {
+    favoriteMovies: FavoriteMovies;
+  };
+}
+
+export interface MovieAddToFavoriteAction {
   type: typeof MOVIE_ADD_TO_FAVORITE;
   payload: {
     id: string;
     movie: Movie;
   };
 }
-export interface MovieRemoveFromFavorite {
+export interface MovieRemoveFromFavoriteAction {
   type: typeof MOVIE_REMOVE_FROM_FAVORITE;
   payload: {
     id: string;
@@ -75,8 +85,9 @@ export type MovieAction =
   | MovieSearchSuccessfulAction
   | MovieSearchFailedAction
   | MovieCacheHitAction
-  | MovieAddToFavorite
-  | MovieRemoveFromFavorite;
+  | MovieAddToFavoriteAction
+  | MovieRemoveFromFavoriteAction
+  | MovieSetFavoritesAction;
 
 // Actions builder functions
 
@@ -147,10 +158,10 @@ export function movieFetchFailedAction(): MovieFetchFailedAction {
   };
 }
 
-export function movieAddToFavorite(
+export function movieAddToFavoriteAction(
   id: string,
   movie: Movie
-): MovieAddToFavorite {
+): MovieAddToFavoriteAction {
   return {
     type: MOVIE_ADD_TO_FAVORITE,
     payload: {
@@ -159,11 +170,24 @@ export function movieAddToFavorite(
     },
   };
 }
-export function movieRemoveFromFavorite(id: string): MovieRemoveFromFavorite {
+export function movieRemoveFromFavoriteAction(
+  id: string
+): MovieRemoveFromFavoriteAction {
   return {
     type: MOVIE_REMOVE_FROM_FAVORITE,
     payload: {
       id,
+    },
+  };
+}
+
+export function movieSetFavoritesAction(
+  favoriteMovies: FavoriteMovies
+): MovieSetFavoritesAction {
+  return {
+    type: MOVIE_SET_FAVORITES,
+    payload: {
+      favoriteMovies,
     },
   };
 }
